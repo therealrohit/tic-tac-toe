@@ -1,0 +1,7 @@
+{
+  "name": "crossplay-tic-tac-toe",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A standalone browser tic-tac-toe game with three bot difficulty levels.",
+  "scripts": { "test": "node --test game.test.js" }
+}

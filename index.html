@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f7f2">
+  <meta name="description" content="A little friendly competition. Play tic-tac-toe against a bot, with three difficulty levels.">
+  <title>Crossplay — You vs. the bot</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="game.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="Crossplay home"><span class="brand-icon">✳</span> crossplay<span class="brand-period">.</span></a>
+    <div class="header-right"><span class="browser-label">A SMALL GAME. A GOOD BREAK.</span><button class="icon-button" id="sound" aria-label="Turn sound on" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path id="sound-waves" d="m16 9 5 6m0-6-5 6"/></svg></button></div>
+  </header>
+  <main>
+    <section class="intro"><p class="eyebrow"><span></span> HUMAN INSTINCT. MACHINE LOGIC.</p><h1>Your move<span>.</span></h1><p>A classic little rivalry. Just you, a bot, and nine squares.</p></section>
+    <div class="game-layout">
+      <aside class="setup">
+        <div class="section-heading"><span class="step">01</span><h2>Make it your game</h2></div>
+        <fieldset><legend>CHOOSE YOUR SIDE</legend><div class="side-picker"><button class="side-option selected" data-side="X" aria-pressed="true"><span class="mark mark-x"></span><span>Crosses</span><small>YOU GO FIRST</small></button><button class="side-option" data-side="O" aria-pressed="false"><span class="mark mark-o"></span><span>Noughts</span><small>BOT GOES FIRST</small></button></div></fieldset>
+        <fieldset class="difficulty-field"><legend>MEET YOUR MATCH</legend><div class="difficulty-picker"><button data-level="easy" aria-pressed="false">Easy</button><button class="selected" data-level="medium" aria-pressed="true">Medium</button><button data-level="hard" aria-pressed="false">Hard</button></div><p id="difficulty-description">A worthy opponent. With a few blind spots.</p></fieldset>
+        <div class="opponent-card"><div class="bot-avatar"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="8" y="12" width="24" height="21" rx="7"/><path d="M20 7v5M5 20v6m30-6v6m-19 1c2 2 6 2 8 0"/><circle cx="15" cy="20" r="1.5" fill="currentColor"/><circle cx="25" cy="20" r="1.5" fill="currentColor"/><circle cx="20" cy="5" r="2"/></svg></div><div><h3>The bot <span class="online-dot"></span></h3><p>Ready for a little competition.</p></div><span class="bot-tag">CPU</span></div>
+        <button class="how-to" id="help"><span class="help-icon">?</span> A quick refresher <span>↗</span></button>
+      </aside>
+      <section class="play-area" aria-label="Tic-tac-toe game">
+        <div class="board-top"><span class="round-label" id="round-label">ROUND 01</span><span class="turn-label" id="turn-pill"><span></span> YOUR TURN</span></div>
+        <div class="board" role="group" aria-label="Game board">
+          <button class="cell" data-cell="0" aria-label="Row 1, column 1: empty"></button><button class="cell" data-cell="1" aria-label="Row 1, column 2: empty"></button><button class="cell" data-cell="2" aria-label="Row 1, column 3: empty"></button>
+          <button class="cell" data-cell="3" aria-label="Row 2, column 1: empty"></button><button class="cell" data-cell="4" aria-label="Row 2, column 2: empty"></button><button class="cell" data-cell="5" aria-label="Row 2, column 3: empty"></button>
+          <button class="cell" data-cell="6" aria-label="Row 3, column 1: empty"></button><button class="cell" data-cell="7" aria-label="Row 3, column 2: empty"></button><button class="cell" data-cell="8" aria-label="Row 3, column 3: empty"></button>
+        </div>
+        <div class="game-message" aria-live="polite" aria-atomic="true"><h2 id="status">The board is yours.</h2><p id="status-detail">Pick a square to get things started.</p></div>
+        <button class="new-round" id="new-round"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 10a8 8 0 1 1 1 7M4 4v6h6"/></svg><span>New round</span><kbd>N</kbd></button>
+      </section>
+      <aside class="score-panel"><div class="section-heading"><span class="step">02</span><h2>The score so far</h2></div><p class="session-label">YOUR RUNNING TALLY</p><div class="score-card you"><span class="score-symbol">×</span><div><h3>You</h3><p id="your-side">Playing as X</p></div><strong id="player-score">0</strong></div><div class="score-card bot"><span class="score-symbol">○</span><div><h3>The bot</h3><p id="bot-side">Playing as O</p></div><strong id="bot-score">0</strong></div><div class="score-card draws"><span class="score-symbol">=</span><div><h3>Draws</h3><p>A fair fight</p></div><strong id="draw-score">0</strong></div><button id="reset-score" class="reset-score">↺ <span>Reset scores</span></button><div class="little-note"><span>✳</span><p>Three in a row.<br>Endless possibilities.<br><em>Okay, technically 255,168.</em></p></div></aside>
+    </div>
+    <div class="bottom-note"><span class="tiny-grid">▦</span> Simple rules. A little strategy. One more round.</div>
+  </main>
+  <footer><span>BUILT FOR YOUR COFFEE BREAK.</span><span>No downloads. No distractions. <span class="footer-cross">×</span><span class="footer-circle">○</span></span></footer>
+  <dialog id="help-dialog"><button class="dialog-close icon-button" aria-label="Close instructions">×</button><p class="eyebrow">THE ORIGINAL QUICK GAME</p><h2>Nine squares.<br>One simple goal.</h2><p>Take turns placing your mark in an empty square. Get three in a row, column, or diagonal to win. If the board fills up, it’s a draw.</p><p><strong>X always goes first.</strong> Choose O to let the bot make the opening move. Hard mode plays perfectly—can you hold it to a draw?</p><p class="dialog-tip">Press <kbd>N</kbd> for a new round. Use Tab and Enter to play with your keyboard.</p><button class="new-round" id="got-it">Let’s play <span>↗</span></button></dialog>
+</body>
+</html>
